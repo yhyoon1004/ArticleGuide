@@ -1,6 +1,6 @@
 
 
-export default function Page(){
+export default function ArticleList(){
     const sample = (type)=>{
         return "your my "+type;
     }
