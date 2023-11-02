@@ -1,19 +1,14 @@
 import * as React from 'react';
-import Grid from '@mui/system/Unstable_Grid';
-import styled from '@mui/system/styled';
-import Grid2 from "@mui/material/Unstable_Grid2";
+import Main from "@/app/Main";
+import Blog from "@/app/Blog";
 
 export default function Home() {
 
   return (
     <>
-      <Grid2 container={true}>
-        <Grid2 alignItems={"center"} md={12} >
-            <div>main page by meterial ui grid system</div>
-        </Grid2>
+        <Blog>
 
-
-      </Grid2>
+        </Blog>
     </>
   )
 }
