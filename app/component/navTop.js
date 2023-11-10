@@ -1,5 +1,19 @@
+'use client'
+import {useState} from "react";
+
 export default function NavTop({title}) {
 
+    const [toggleActive, setToggleActive] = useState(false);
+    const pageToggleHandler = (e) => {
+        if(toggleActive){
+            document.body.className ='sb-nav-fixed';
+            setToggleActive(!toggleActive);
+        }
+        else{
+            document.body.className = 'sb-nav-fixed sb-sidenav-toggled';
+            setToggleActive(!toggleActive);
+        }
+    };
 
     return (
         <>
@@ -7,7 +21,11 @@ export default function NavTop({title}) {
                 <a className="navbar-brand ps-3" href="/">
                     {title}
                 </a>
-                <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+                {/*Page SideBar Toggle*/}
+                <button className="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0"
+                        onClick={pageToggleHandler}
+                        id="sidebarToggle"
+                        href="#!">
                     <i className="fas fa-bars"></i>
                 </button>
 

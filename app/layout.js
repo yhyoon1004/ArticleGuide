@@ -3,7 +3,7 @@ import {Inter} from 'next/font/google'
 import Script from "next/script";
 import'./template/asset/template.css'
 
-const inter = Inter({subsets: ['latin']})
+// const inter = Inter({subsets: ['latin']})
 
 export const metadata = {
     title: 'Article Guide',
@@ -24,7 +24,7 @@ export default function RootLayout({children}) {
             <link href="css/styles.css" rel="stylesheet"/>
             <Script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossOrigin="anonymous"></Script>
         </head>
-        <body className={inter.className}>{children}</body>
+        <body>{children}</body>
         </html>
     )
 }
