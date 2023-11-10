@@ -1,16 +1,14 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-import NavTop from "@/app/component/navTop";
-import NavSide from "@/app/component/navSide";
+import Navigation from "@/app/component/navigation";
+import SideBar from "@/app/component/sideBar";
 
 const mainTitle = "Article Guide";
 
 export default function Home() {
   return (
    <>
-       <NavTop title={mainTitle}/>
+       <Navigation title={mainTitle}/>
        <div id="layoutSidenav">
-           <NavSide/>
+           <SideBar/>
            <div id="layoutSidenav_content">
                <main>
                    <div className="container-fluid px-4">

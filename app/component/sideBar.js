@@ -1,4 +1,4 @@
-export default function NavSide() {
+export default function SideBar() {
 
     return(
         <>

@@ -1,9 +1,10 @@
 'use client'
 import {useState} from "react";
 
-export default function NavTop({title}) {
+export default function Navigation({title}) {
 
     const [toggleActive, setToggleActive] = useState(false);
+    const [userToggleActive, setUserToggleActive] = useState(false);
     const pageToggleHandler = (e) => {
         if(toggleActive){
             document.body.className ='sb-nav-fixed';
@@ -12,6 +13,17 @@ export default function NavTop({title}) {
         else{
             document.body.className = 'sb-nav-fixed sb-sidenav-toggled';
             setToggleActive(!toggleActive);
+        }
+    };
+    const userToggleHandler = (e) => {
+        if (userToggleActive) {
+            document.querySelector('#navbarDropdown').classList.remove('show');
+            document.querySelector('#userDropdown').classList.remove('show');;
+            setUserToggleActive(!userToggleActive)
+        } else {
+            document.querySelector('#navbarDropdown').classList.add('show');
+            document.querySelector('#userDropdown').classList.add('show');
+            setUserToggleActive(!userToggleActive)
         }
     };
 
@@ -41,12 +53,14 @@ export default function NavTop({title}) {
                 </form>
 
                 {/*login user form*/}
-                <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+                <ul className="navbar-nav ms-auto ms-md-0 me-3 me-lg-4"
+                    onClick={userToggleHandler}
+                >
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false"><i className="fas fa-user fa-fw"></i></a>
-                        <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a className="dropdown-item" href="#!">Settings</a></li>
+                        <ul className="dropdown-menu dropdown-menu-end"id="userDropdown" aria-labelledby="navbarDropdown">
+                            <li><a className="dropdown-item"  href="#!">Settings</a></li>
                             <li><a className="dropdown-item" href="#!">Activity Log</a></li>
                             <li>
                                 <hr className="dropdown-divider"/>
