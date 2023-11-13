@@ -1,83 +1,59 @@
+import Link from "next/link";
+
 export default function SideBar() {
 
     return(
         <>
             <div id="layoutSidenav_nav">
                 <nav className="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+
+                    {/* SideBar Menu items */}
                     <div className="sb-sidenav-menu">
                         <div className="nav">
+
                             <div className="sb-sidenav-menu-heading">Write</div>
-                            <a className="nav-link" href="/write">
-                                <div className="sb-nav-link-icon"> <i className="fas fa-tachometer-alt"></i></div>
+
+                            <Link className="nav-link" href="/write">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fas fa-tachometer-alt"></i>
+                                </div>
                                 기사 작성
-                            </a>
+                            </Link>
+
                             <div className="sb-sidenav-menu-heading">views</div>
-                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                               data-bs-target="#collapseLayouts" aria-expanded="false"
-                               aria-controls="collapseLayouts"
-                            >
-                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
-                                외부 언론사 기사목록
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                            </a>
-                            <div className="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-                                <nav className="sb-sidenav-menu-nested nav">
-                                    <a className="nav-link" href="layout-static.html">Static Navigation</a>
-                                    <a className="nav-link" href="layout-sidenav-light.html">Light Sidenav</a>
-                                </nav>
-                            </div>
-                            <a className="nav-link collapsed" href="#" data-bs-toggle="collapse"
+
+                            <Link className="nav-link collapsed" href="/article/internal" data-bs-toggle="collapse"
                                data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                                 <div className="sb-nav-link-icon"><i className="fas fa-book-open"></i></div>
-                                Pages
-                                <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i></div>
-                            </a>
-                            <div className="collapse" id="collapsePages" aria-labelledby="headingTwo"
-                                 data-bs-parent="#sidenavAccordion">
-                                <nav className="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                       data-bs-target="#pagesCollapseAuth" aria-expanded="false"
-                                       aria-controls="pagesCollapseAuth">
-                                        Authentication
-                                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i>
-                                        </div>
-                                    </a>
-                                    <div className="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne"
-                                         data-bs-parent="#sidenavAccordionPages">
-                                        <nav className="sb-sidenav-menu-nested nav">
-                                            <a className="nav-link" href="login.html">Login</a>
-                                            <a className="nav-link" href="register.html">Register</a>
-                                            <a className="nav-link" href="password.html">Forgot Password</a>
-                                        </nav>
-                                    </div>
-                                    <a className="nav-link collapsed" href="#" data-bs-toggle="collapse"
-                                       data-bs-target="#pagesCollapseError" aria-expanded="false"
-                                       aria-controls="pagesCollapseError">
-                                        Error
-                                        <div className="sb-sidenav-collapse-arrow"><i className="fas fa-angle-down"></i>
-                                        </div>
-                                    </a>
-                                    <div className="collapse" id="pagesCollapseError" aria-labelledby="headingOne"
-                                         data-bs-parent="#sidenavAccordionPages">
-                                        <nav className="sb-sidenav-menu-nested nav">
-                                            <a className="nav-link" href="401.html">401 Page</a>
-                                            <a className="nav-link" href="404.html">404 Page</a>
-                                            <a className="nav-link" href="500.html">500 Page</a>
-                                        </nav>
-                                    </div>
-                                </nav>
-                            </div>
+                                Article Guide 기사
+                            </Link>
+
+                            <Link className="nav-link collapsed" href="/article/external" data-bs-toggle="collapse"
+                               data-bs-target="#collapseLayouts" aria-expanded="false"
+                               aria-controls="collapseLayouts">
+                                <div className="sb-nav-link-icon"><i className="fas fa-columns"></i></div>
+                                외부 언론사 기사
+                            </Link>
+
                             <div className="sb-sidenav-menu-heading">my page</div>
-                            <a className="nav-link" href="charts.html">
-                                <div className="sb-nav-link-icon"><i className="fas fa-chart-area"></i></div>
-                                Charts
-                            </a>
-                            <a className="nav-link" href="tables.html">
-                                <div className="sb-nav-link-icon"><i className="fas fa-table"></i></div>
-                                Tables
-                            </a>
+
+                            <Link className="nav-link" href="charts.html">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fas fa-chart-area"></i>
+                                </div>
+                                내 통계
+                            </Link>
+
+                            <Link className="nav-link" href="tables.html">
+                                <div className="sb-nav-link-icon">
+                                    <i className="fas fa-table"></i>
+                                </div>
+                                내 정보
+                            </Link>
                         </div>
                     </div>
+
+
                     <div className="sb-sidenav-footer">
                         <div className="small">Support by :</div>
                         Yun Hwan
