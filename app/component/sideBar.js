@@ -37,14 +37,14 @@ export default function SideBar() {
 
                             <div className="sb-sidenav-menu-heading">my page</div>
 
-                            <Link className="nav-link" href="charts.html">
+                            <Link className="nav-link" href="/user/statistics">
                                 <div className="sb-nav-link-icon">
                                     <i className="fas fa-chart-area"></i>
                                 </div>
                                 내 통계
                             </Link>
 
-                            <Link className="nav-link" href="tables.html">
+                            <Link className="nav-link" href="/user/info">
                                 <div className="sb-nav-link-icon">
                                     <i className="fas fa-table"></i>
                                 </div>
