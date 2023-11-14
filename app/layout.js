@@ -26,6 +26,7 @@ export default function RootLayout({children}) {
             <link rel="preconnect" href="https://fonts.googleapis.com"/>
             <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
             <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet"/>
+            <link rel="stylesheet" href="https://unpkg.com/react-quill@1.3.3/dist/quill.snow.css"/>
             <Script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js"></Script>
         </head>
         <body>
