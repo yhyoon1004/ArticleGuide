@@ -2,7 +2,7 @@ import Script from "next/script";
 import '../public/template.css'
 import Navigation from "@/app/component/navigation";
 import SideBar from "@/app/component/sideBar";
-// const inter = Inter({subsets: ['latin']})
+import IndexBreadCrumbs from "@/app/component/indexBreadCrumbs";
 
 export const metadata = {
     title: 'Article Guide',
@@ -34,6 +34,7 @@ export default function RootLayout({children}) {
             <SideBar/>
             <div id="layoutSidenav_content">
                 <main>
+                    {/*<IndexBreadCrumbs/>*/}
                 {children}
                 </main>
                 <footer className="py-4 bg-light mt-auto">
