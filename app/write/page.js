@@ -14,16 +14,88 @@ import {
     Row
 } from "react-bootstrap";
 import {useEffect, useState} from "react";
+import axios from "axios";
+import {log} from "next/dist/server/typescript/utils";
 
 export default function ArticleWriter() {
 
-    const [editorContent, setEditorContent] = useState("");
+    const [title,setTitle] = useState("")
+    const [content, setContent] = useState([]);
+    const [category, setCategory] = useState("");
+    const [keyword, setKeyword] = useState("");
+    const [byline, setByline] = useState("");
+    const [summary, setSummary] = useState("");
+
+    const titleHandler = function (e) {
+        setTitle(e.target.value);
+    };
+    const contentHandler = (content, delta, source, editor) => {
+        setContent(content);
+    };
+    const categoryHandler = function (e) {
+        setCategory(e.target.value);
+    };
+    const keywordHandler = function (e) {
+        setKeyword(e.target.value);
+    };
+    const bylineHandler = function (e) {
+        setByline(e.target.value);
+    };
+    const summaryHandler = function (e) {
+        setSummary(e.target.value);
+    };
+
+    useEffect(()=>{
+        console.log(title);
+        console.log(content);
+        console.log(category);
+        console.log(keyword);
+        console.log(byline);
+        console.log(summary);
+    },[title])
+
+    //     "articleId": 0,
+    //     "title": title,
+    //     "content": content,
+    //     "summary": summary,
+    //     "category": category,
+    //     "keyword": keyword,
+    //     "byline": byline,
+
+    const articleSend = async function () {
+        await axios.post("http://localhost:8080/article/create",
+            {
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                data: {
+                    "articleId": null,
+                    "title": title,
+                    "content": content,
+                    "summary": summary,
+                    "category": category,
+                    "keyword": keyword,
+                    "byline": byline,
+                }
+            }
+        ).then();
+
+    };
+    const test = function () {
+        console.log(JSON.stringify({
+            "articleId": 0,
+            "title": title,
+            "content": content,
+            "summary": summary,
+            "category": category,
+            "keyword": keyword,
+            "byline": byline,
+        }))
+    };
     /**
      * 포멧 문서 -> https://quilljs.com/docs/formats/
      * */
-    const formats = [
-        "header", "bold", "italic", "underline", "strike", "blockquote", "list", "bullet", "indent", "link", "image", "align", "color", "background",
-    ];
+    const formats = ["header", "bold", "italic", "underline", "strike", "blockquote", "list", "bullet", "indent", "link", "image", "align", "color", "background",];
 
     /**
      * 모듈 문서 -> https://quilljs.com/docs/modules/toolbar/
@@ -44,13 +116,6 @@ export default function ArticleWriter() {
         ],
     };
 
-    const handleEditorChange = (content, delta, source, editor) => {
-        setEditorContent(editor.getContents());
-    };
-
-    useEffect(() => {
-        console.log(editorContent)/*테스트 용 추후 제거 요망*/
-    },[editorContent]);
 
     return (
         <Container fluid={true}>
@@ -62,6 +127,8 @@ export default function ArticleWriter() {
                             <Form.Control
                                 placeholder="제목을 입력해주세요"
                                 aria-label="기사 제목"
+                                value={title}
+                                onChange={titleHandler}
                             />
                         </InputGroup>
                     </Row>
@@ -70,10 +137,10 @@ export default function ArticleWriter() {
                         <ReactQuill
                             theme="snow"
                             style={{height: "90%", width: "100%"}}
-                            value={editorContent}
+                            value={content}
                             formats={formats}
                             modules={modules}
-                            onChange={handleEditorChange}
+                            onChange={contentHandler}
                         />
                     </Row>
 
@@ -89,16 +156,16 @@ export default function ArticleWriter() {
                             </Row>
                             <Row>
                                 <Col>
-                                    <FormSelect aria-label="Default select example">
+                                    <FormSelect aria-label="Default select example" onChange={categoryHandler}>
                                         <option>기사 분야</option>
-                                        <option value="1">정치</option>
-                                        <option value="2">경제</option>
-                                        <option value="3">산업</option>
-                                        <option value="3">사회</option>
-                                        <option value="3">전국</option>
-                                        <option value="3">세계</option>
-                                        <option value="3">연예</option>
-                                        <option value="3">스포츠</option>
+                                        <option value="정치">정치</option>
+                                        <option value="경제">경제</option>
+                                        <option value="산업">산업</option>
+                                        <option value="사회">사회</option>
+                                        <option value="전국">전국</option>
+                                        <option value="세계">세계</option>
+                                        <option value="연예">연예</option>
+                                        <option value="스포츠">스포츠</option>
                                     </FormSelect>
                                 </Col>
 
@@ -106,27 +173,27 @@ export default function ArticleWriter() {
                         </ListGroupItem>
                         <ListGroupItem>
                             <FormLabel>기사내용 요약</FormLabel>
-                            <FormControl style={{minHeight:"200px"}} as={"textarea"} placeholder={"500자 내외"}/>
+                            <FormControl style={{minHeight:"200px"}} as={"textarea"} placeholder={"500자 내외"} onChange={summaryHandler}/>
                         </ListGroupItem>
                         <ListGroupItem>
                             <FormLabel>Keyword (키워드)</FormLabel>
-                            <FormControl placeholder={"',' 구분 -> 누리호,위성발사"}/>
+                            <FormControl placeholder={"',' 구분 -> 누리호,위성발사"} onChange={keywordHandler}/>
                         </ListGroupItem>
                         <ListGroupItem>
                             <FormLabel>Byline (바이라인)</FormLabel>
-                            <FormControl placeholder={"작성자 기자명 -> 홍길동"}/>
+                            <FormControl placeholder={"작성 기자명 -> 홍길동"} onChange={bylineHandler}/>
                         </ListGroupItem>
                         <ListGroupItem>
                             <Row>
                                 <Col>
-                                    <Button className={"me-1"} variant="secondary">임시 저장</Button>
+                                    <Button className={"me-1"} variant="secondary" onClick={test}>임시 저장</Button>
                                     <Button variant="success" >예약 송고</Button>
                                 </Col>
                             </Row>
                             <Row className={"mt-1"}>
                                 <Col>
                                     <Button className={"me-1"} variant="danger">작성 취소</Button>
-                                    <Button >기사 송고</Button>
+                                    <Button onClick={articleSend}>기사 송고</Button>
                                 </Col>
                             </Row>
                         </ListGroupItem>
