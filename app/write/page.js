@@ -45,30 +45,10 @@ export default function ArticleWriter() {
         setSummary(e.target.value);
     };
 
-    useEffect(()=>{
-        console.log(title);
-        console.log(content);
-        console.log(category);
-        console.log(keyword);
-        console.log(byline);
-        console.log(summary);
-    },[title])
-
-    //     "articleId": 0,
-    //     "title": title,
-    //     "content": content,
-    //     "summary": summary,
-    //     "category": category,
-    //     "keyword": keyword,
-    //     "byline": byline,
 
     const articleSend = async function () {
         await axios.post("http://localhost:8080/article/create",
             {
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                data: {
                     "articleId": null,
                     "title": title,
                     "content": content,
@@ -76,7 +56,6 @@ export default function ArticleWriter() {
                     "category": category,
                     "keyword": keyword,
                     "byline": byline,
-                }
             }
         ).then();
 
